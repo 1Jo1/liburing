@@ -244,6 +244,7 @@ static int do_flush_datagram(struct thread_data *td, int fd)
 
 static void do_setup_rx(int domain, int type, int protocol)
 {
+	printf("do_setup_rx\n");
 	struct sockaddr_storage addr = {};
 	struct thread_data *td;
 	int listen_fd, fd;
