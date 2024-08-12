@@ -317,7 +317,7 @@ static int __do_send_bundle(struct recv_data *rd, struct io_uring *ring, int soc
 	pthread_barrier_wait(&rd->barrier);
 
 	for (i = 0; i < nr_msgs; i++) {
-		printf("do_send_bundle\n");
+		printf("do_send_bundle wait\n");
 		ret = io_uring_wait_cqe(ring, &cqe);
 		if (ret) {
 			fprintf(stderr, "wait send: %d\n", ret);
