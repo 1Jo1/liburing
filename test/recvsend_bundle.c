@@ -501,7 +501,7 @@ static int do_send(struct recv_data *rd)
 		ptr += MSG_SIZE;
 	}
 
-	printf("if check bundle\n");
+	printf("if check bundle use_tcp: %d\n", use_tcp);
 	/* prepare more messages, sending with bundle */
 	rd->recv_bytes += (nr_msgs * MSG_SIZE);
 	if (rd->send_bundle && use_tcp)
