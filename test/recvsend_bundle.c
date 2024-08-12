@@ -470,6 +470,7 @@ static int do_send(struct recv_data *rd)
 			seq_buf[i] = send_seq++;
 
 		ret = send(sockfd, seq_buf, sizeof(seq_buf), MSG_DONTWAIT);
+		printf("raw send\n");
 		if (ret < 0) {
 			if (errno == EAGAIN) {
 				send_seq -= SEQ_SIZE;
