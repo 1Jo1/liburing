@@ -592,13 +592,13 @@ static int run_tests(int is_udp)
 	// 	return T_EXIT_FAIL;
 	// }
 	//
-	// /* test bundling with full socket */
-	// ret = test(1, 1000000, &eagain_hit, 1, 1);
-	// if (ret) {
-	// 	fprintf(stderr, "test d failed\n");
-	// 	return T_EXIT_FAIL;
-	// }
-	//
+	/* test bundling with full socket */
+	ret = test(1, 1000000, &eagain_hit, 1, 1);
+	if (ret) {
+		fprintf(stderr, "test d failed\n");
+		return T_EXIT_FAIL;
+	}
+
 	// /* test bundling with almost full socket */
 	// ret = test(1, eagain_hit - (nr_msgs / 2), NULL, 1, 1);
 	// if (ret) {
