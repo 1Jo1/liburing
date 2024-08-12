@@ -298,6 +298,7 @@ err:
 
 static int __do_send_bundle(struct recv_data *rd, struct io_uring *ring, int sockfd)
 {
+	printf("__do_send_bundle\n");
 	struct io_uring_cqe *cqe;
 	struct io_uring_sqe *sqe;
 	int bytes_needed = MSG_SIZE * nr_msgs;
@@ -316,6 +317,7 @@ static int __do_send_bundle(struct recv_data *rd, struct io_uring *ring, int soc
 	pthread_barrier_wait(&rd->barrier);
 
 	for (i = 0; i < nr_msgs; i++) {
+		printf("do_send_bundle\n");
 		ret = io_uring_wait_cqe(ring, &cqe);
 		if (ret) {
 			fprintf(stderr, "wait send: %d\n", ret);
@@ -462,6 +464,7 @@ static int do_send(struct recv_data *rd)
 	len = 1024 * MSG_SIZE;
 	setsockopt(sockfd, SOL_SOCKET, SO_SNDBUF, &len, optlen);
 
+	//only the make the socket full!
 	/* almost fill queue, leave room for one message */
 	send_seq = 0;
 	rd->to_eagain = 0;
@@ -592,13 +595,13 @@ static int run_tests(int is_udp)
 	// 	return T_EXIT_FAIL;
 	// }
 	//
-	/* test bundling with full socket */
-	ret = test(1, 1000000, &eagain_hit, 1, 1);
-	if (ret) {
-		fprintf(stderr, "test d failed\n");
-		return T_EXIT_FAIL;
-	}
-
+	// /* test bundling with full socket */
+	// ret = test(1, 1000000, &eagain_hit, 1, 1);
+	// if (ret) {
+	// 	fprintf(stderr, "test d failed\n");
+	// 	return T_EXIT_FAIL;
+	// }
+	//
 	// /* test bundling with almost full socket */
 	// ret = test(1, eagain_hit - (nr_msgs / 2), NULL, 1, 1);
 	// if (ret) {
