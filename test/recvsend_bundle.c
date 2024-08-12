@@ -349,6 +349,7 @@ static int __do_send_bundle(struct recv_data *rd, struct io_uring *ring, int soc
 
 static int __do_send(struct recv_data *rd, struct io_uring *ring, int sockfd)
 {
+	printf("__do_send\n");
 	struct io_uring_cqe *cqe;
 	struct io_uring_sqe *sqe;
 	int bytes_needed = MSG_SIZE * nr_msgs;
@@ -588,13 +589,13 @@ static int run_tests(int is_udp)
 		return T_EXIT_FAIL;
 	}
 
-	// /* test bundling recv and send */
-	// ret = test(0, 0, NULL, 1, 1);
-	// if (ret) {
-	// 	fprintf(stderr, "test c failed\n");
-	// 	return T_EXIT_FAIL;
-	// }
-	//
+	/* test bundling recv and send */
+	ret = test(0, 0, NULL, 1, 1);
+	if (ret) {
+		fprintf(stderr, "test c failed\n");
+		return T_EXIT_FAIL;
+	}
+
 	// /* test bundling with full socket */
 	// ret = test(1, 1000000, &eagain_hit, 1, 1);
 	// if (ret) {
