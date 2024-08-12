@@ -583,20 +583,20 @@ static int run_tests(int is_udp)
 	if (no_send_mshot)
 		return T_EXIT_SKIP;
 
-	/* test recv bundle */
-	ret = test(0, 0, NULL, 0, 1);
-	if (ret) {
-		fprintf(stderr, "test b failed\n");
-		return T_EXIT_FAIL;
-	}
-	//
-	// /* test bundling recv and send */
-	// ret = test(0, 0, NULL, 1, 1);
+	// /* test recv bundle */
+	// ret = test(0, 0, NULL, 0, 1);
 	// if (ret) {
-	// 	fprintf(stderr, "test c failed\n");
+	// 	fprintf(stderr, "test b failed\n");
 	// 	return T_EXIT_FAIL;
 	// }
-	//
+	// //
+	/* test bundling recv and send */
+	ret = test(0, 0, NULL, 1, 1);
+	if (ret) {
+		fprintf(stderr, "test c failed\n");
+		return T_EXIT_FAIL;
+	}
+
 	// /* test bundling with full socket */
 	// ret = test(1, 1000000, &eagain_hit, 1, 1);
 	// if (ret) {
